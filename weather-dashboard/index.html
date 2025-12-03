@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Weather Dashboard - Real-time weather information">
+    <title>Weather Dashboard</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    
+    <!-- Chart.js for graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Header Section -->
+        <header class="header">
+            <h1 class="header__title">Weather Dashboard</h1>
+            <p class="header__subtitle">Real-time weather information powered by Open-Meteo</p>
+        </header>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <input 
+                        type="text" 
+                        id="citySearch" 
+                        class="search-input" 
+                        placeholder="Search for a city (e.g., London, Tokyo, Pune)..."
+                        aria-label="City search"
+                        autocomplete="off"
+                    >
+                    <!-- Autocomplete Suggestions -->
+                    <div id="suggestions" class="suggestions hidden"></div>
+                </div>
+                <button 
+                    id="searchBtn" 
+                    class="search-btn"
+                    aria-label="Search"
+                >
+                    Search
+                </button>
+            </div>
+            
+            <!-- Error Message -->
+            <div id="searchError" class="error-message" role="alert" aria-live="polite"></div>
+            
+            <!-- Popular Cities Quick Access -->
+            <div class="popular-cities" id="popularCities">
+                <span class="popular-label">Popular:</span>
+                <button class="popular-city-btn" data-city="London">London</button>
+                <button class="popular-city-btn" data-city="New York">New York</button>
+                <button class="popular-city-btn" data-city="Tokyo">Tokyo</button>
+                <button class="popular-city-btn" data-city="Paris">Paris</button>
+                <button class="popular-city-btn" data-city="Pune">Pune</button>
+                <button class="popular-city-btn" data-city="Mumbai">Mumbai</button>
+            </div>
+        </section>
+
+        <!-- Loading Indicator -->
+        <div id="loadingIndicator" class="loading-indicator hidden">
+            <div class="spinner"></div>
+            <p>Loading weather data...</p>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            
+            <!-- Current Weather Card -->
+            <section id="currentWeatherSection" class="weather-card">
+                <h2 class="section-title">Current Weather</h2>
+                <div id="currentWeather" class="current-weather">
+                    <!-- Current weather will be rendered here -->
+                </div>
+            </section>
+
+            <!-- Charts Section -->
+            <section id="chartsSection" class="charts-section">
+                
+                <div class="chart-container">
+                    <h3 class="chart-title">24-Hour Temperature Forecast</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="temperatureChart" aria-label="Temperature forecast chart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h3 class="chart-title">Precipitation Probability</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="precipitationChart" aria-label="Precipitation probability chart"></canvas>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>
+                Powered by <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> | 
+                Made for Aeron Systems Assignment
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript Modules -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
